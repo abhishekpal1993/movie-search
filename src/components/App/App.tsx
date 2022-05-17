@@ -1,20 +1,17 @@
+import { AppRoute } from "components/Route/AppRoute";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "redux/store";
+
 export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={"./image"} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <AppRoute />
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
   );
 }
